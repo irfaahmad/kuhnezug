@@ -4,6 +4,10 @@
   justify-content: center;
 }
 
+body {
+  background-color: rgb(200, 230, 144);
+}
+
 .Info {
   display: flex;
   flex-direction: column;
@@ -29,14 +33,14 @@ button {
   cursor: pointer;
 }
 
-.employees {
+.Requests {
   display: flex;
   align-items: 100%;
   flex-direction: column;
   width: 100%;
 }
 
-.employee {
+.part {
   width: 700px;
   height: 70px;
   border: 1px solid black;
@@ -45,6 +49,6 @@ button {
   padding: 10px;
 }
 
-.employee h3 {
+.part h3 {
   margin: 20px;
 }

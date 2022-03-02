@@ -4,25 +4,27 @@ import Axios from "axios";
 
 function App() {
 
-  const [name, setName] = useState(""); //empty string is original string
-  const [age, setAge] = useState("");
-  const [country, setCountry] = useState("");
+  const [name, setName] = useState(""); 
+  const [email, setEmail] = useState("");
+  const [reqParts, setReqParts] = useState("");
+  const [comments, setComments] = useState("");
 
-  const [employeeList, setEmployeeList] = useState([]);
+  const [PartList, setPartList] = useState([]);
 
-  const addPerson = () => {
+  const addRequest = () => {
     Axios.post("http://localhost:3001/create", {
       name : name, 
-      age : age, 
-      country : country,
+      email : email, 
+      reqParts : reqParts,
+      comments : comments
     }).then(() => {
       console.log("success");
     });
   };
 
-  const getEmployees = () => {
+  const getParts = () => {
     Axios.get("http://localhost:3001/employees").then((response) => {
-      setEmployeeList(response.data);
+      setPartList(response.data);
     }); 
   };
 
@@ -36,27 +38,33 @@ function App() {
             setName(event.target.value);
           }}
         />
-        <label>Age:</label>
+        <label>Email:</label>
         <input 
-        type="number"
+        type="text"
           onChange = {(event) => {
-            setAge(event.target.value);
+            setEmail(event.target.value);
           }} />
-        <label>Country:</label>
+        <label>Requested Parts:</label>
         <input
           type="text"
           onChange = {(event) => {
-            setCountry(event.target.value);
-          }}
-        />
-        <button onClick={addPerson}> Add Employee </button>
+            setReqParts(event.target.value);
+          }} />
+        <label>Comments:</label>
+        <input 
+        type="text"
+          onChange = {(event) => {
+            setComments(event.target.value);
+          }} />
+        <button onClick={addRequest}> Send Request </button>
       </div>
-      <br />
-      <div className="employees">
-        <button onClick={getEmployees}> Show People </button>
 
-        {employeeList.map((val, key) => {
-          return <div className="employee">
+      <br />
+      <div className="Requests">
+        <button onClick={getParts}> Show Requests </button>
+
+        {partList.map((val, key) => {
+          return <div className="part">
             <h3> {val.name} </h3>
             <h3> {val.age} </h3>
             <h3> {val.country} </h3>
